@@ -1,0 +1,1 @@
+Made with Java and Python. JavaFx for UI and Selenium for the scripts. Retrieves data from serebii.net and displays it. 

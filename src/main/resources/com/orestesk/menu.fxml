@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #1a1c1d;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.orestesk.Menu">
+   <children>
+      <AnchorPane prefHeight="50.0" prefWidth="700.0">
+         <children>
+            <HBox fx:id="iconHolder" alignment="CENTER" prefHeight="50.0" prefWidth="700.0" spacing="5.0" style="-fx-background-color: #2b2e30;">
+               <children>
+                  <ImageView fx:id="githubIcon" fitHeight="45.0" fitWidth="45.0" layoutX="310.0" layoutY="10.0" onMouseClicked="#switchToMenu" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@misc/icons/github.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="settingsIcon" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#switchToSettings" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@misc/icons/settings.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="newsIcon" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#switchToNews" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@misc/icons/news.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+    <AnchorPane layoutX="344.0" layoutY="289.0" minHeight="0.0" minWidth="0.0" prefHeight="162.0" prefWidth="206.0" />
+      <ScrollPane fx:id="scrollPane" layoutY="50.0" prefHeight="450.0" prefWidth="700.0">
+        <content>
+          <AnchorPane fx:id="contentAnchor">
+               <children>
+                  <Pane fx:id="originalPane">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="440.0" prefWidth="220.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="19.0" prefWidth="177.0" text="Flaaffy">
+                                 <font>
+                                    <Font name="Roboto Regular" size="48.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Version 1.0.0.0">
+                                 <font>
+                                    <Font name="Roboto Regular" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Hyperlink focusTraversable="false" text="https://github.com/OrestesK" />
+                           </children>
+                        </VBox>
+                        <ImageView fitHeight="430.0" fitWidth="680.0" layoutX="200.0" layoutY="5.0" mouseTransparent="true" opacity="0.12" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@misc/flaaffy.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children></AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
