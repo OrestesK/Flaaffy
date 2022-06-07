@@ -8,20 +8,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class App extends Application {  
-    public static STATE state = STATE.MENU;
-    public static VBox content;
-    private static Scene scene;
+    private Scene scene;
     private double xOffset = 0;
     private double yOffset = 0;
-
-    public enum STATE{
-        MENU,SETTINGS,NEWS;
-    }
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -49,11 +42,7 @@ public class App extends Application {
         } : null);
     }
 
-    public static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
+    public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }

@@ -2,27 +2,30 @@ package com.orestesk;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 public class Menu {
-    private Pane menuContents;
+    @FXML
+    private ScrollPane scrollPane;
     @FXML
     private AnchorPane contentAnchor;
     @FXML 
     private Pane originalPane;
     @FXML
     private HBox iconHolder;
-
+    private Pane menuContents;
     public void initialize(){
         menuContents = originalPane;
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     }
     @FXML
     private void switchToMenu(){
-        disableClick(true);
+        setIconClickDisabled(true);
         setContent(menuContents);
-        disableClick(false);
+        setIconClickDisabled(false);
     }
     @FXML
     private void switchToNews(){
@@ -30,16 +33,15 @@ public class Menu {
     }
     @FXML
     private void switchToSettings(){
-        disableClick(true);
-        contentAnchor.getChildren().clear();
-        disableClick(false);
+        new Settings(this);
     }
-
     public void setContent(Node content){
         contentAnchor.getChildren().setAll(content);
     }
-
-    public void disableClick(boolean val){
+    public AnchorPane getContentAnchor(){
+        return contentAnchor;
+    }
+    public void setIconClickDisabled(boolean val){
         for(Node child: iconHolder.getChildren()){
             child.setMouseTransparent(val);
         }
