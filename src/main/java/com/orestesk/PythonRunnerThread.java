@@ -25,7 +25,7 @@ public class PythonRunnerThread implements Runnable{
         this(template, new String[]{"","//*[@id=\"content\"]/main/div[1]/div[2]/p[2]"});
     }
     public PythonRunnerThread(Template template, String[] args){
-        this.args = new String[]{"https://www.serebii.net/" + args[0],args[1]};
+        this.args = new String[]{"https://www.serebii.net/" + args[0] , args[1]};
         this.template = template;
     }
     public void run() {
@@ -36,28 +36,29 @@ public class PythonRunnerThread implements Runnable{
     private void getData(){
         String s = null;
         try{
-        Process p = new ProcessBuilder("python","src/main/java/com/orestesk/python/main.py", args[0], args[1]).start();
-        p.waitFor();
-        BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        boolean joined = false;
-        while ((s = stdInput.readLine()) != null) {
-                if(s.substring(0, 5).equals("https")){
-                    links.add(s);
-                    joined = false;
-                }
-                else{
-                    if(joined == true){
-                        texts.set(texts.size() - 1, texts.get(texts.size() - 1) + s);
+            String executionPath = System.getProperty("user.dir").replace("\\", "/");
+            Process p = new ProcessBuilder("python3", executionPath + "/python/main.py", args[0], args[1]).start();
+            p.waitFor();
+            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            boolean joined = false;
+            while ((s = stdInput.readLine()) != null) {
+                    if(s.substring(0, 5).equals("https")){
+                        links.add(s);
+                        joined = false;
                     }
                     else{
-                        texts.add(s);
+                        if(joined == true){
+                            texts.set(texts.size() - 1, texts.get(texts.size() - 1) + s);
+                        }
+                        else{
+                            texts.add(s);
+                        }
+                        texts.set(texts.size() - 1, texts.get(texts.size() - 1)
+                        .replaceAll("([a-z])([A-Z])", "$1.\n $2")
+                        .replaceAll("([1-9])([A-Z])", "$1.\n $2"));
+                    joined = true;
                     }
-                    texts.set(texts.size() - 1, texts.get(texts.size() - 1)
-                    .replaceAll("([a-z])([A-Z])", "$1.\n $2")
-                    .replaceAll("([1-9])([A-Z])", "$1.\n $2"));
-                joined = true;
-                }
-        }
+            }
         }
         catch(Exception e){e.printStackTrace();}
     }

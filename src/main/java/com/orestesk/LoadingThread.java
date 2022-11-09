@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class LoadingThread implements Runnable{
+    @SuppressWarnings("unused")
     private News news;
     private boolean alive = true;
     private ImageView loadingIcon;
